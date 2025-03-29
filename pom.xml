@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   
   <groupId>com.promineotech</groupId>
-  <artifactId>mysql-week1</artifactId>
+  <artifactId>mysql-java</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
   <properties>

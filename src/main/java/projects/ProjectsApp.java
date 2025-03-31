@@ -63,7 +63,76 @@ public class ProjectsApp {
 		
 	}// processUserSelections() 
 	
+	/************************************************************************/
+
+	private int getUserSelection() {
+		
+		/**********************************************************************
+		 * printOperations() method, prints all the choices a user has, like
+		 * 1. add a project
+		 * 2. delete a project
+		 * 3. Update a project
+		 * and so on. The operations variable, which is a list has been defined 
+		 * at the top .
+		 ************************************************************************/
+			
+		printOperations();
+			
+		/**********************************************************************
+		 *  getIntInput("Enter a menu selection") method, takes input from the 
+		 * user and then performs operation accordingly. Example - if a user
+		 * selects 1. add a project, then it calls the createProject() method. 
+		 * If the user enter wrong input then it warns the user of the wrong input 
+		 * and asks for a valid input. If the user enter the "Enter" key, then the 
+		 * program exits.
+		 ************************************************************************/
+		Integer input = getIntInput("Enter a menu selection");
+		return Objects.isNull(input) ? -1 : input;
 	
+	}
+	
+	/************************************************************************/
+	
+	private void printOperations() {
+		
+		System.out.println("\nThese are the avaiable selections. Press the Enter key to quit:");
+		operations.forEach(line -> System.out.println("   " + line));
+		
+	}
+	
+	/************************************************************************/
+	
+	private Integer getIntInput(String prompt) {
+		String input = getStringInput(prompt);
+
+		if(Objects.isNull(input)) {
+			return null;
+		}
+		try {
+			return Integer.valueOf(input);
+		
+		}catch(NumberFormatException e) {
+			throw new DbException(input + " is not a valid number.");
+			
+		}
+		
+	}
+	/************************************************************************/
+	
+	private String getStringInput(String prompt) {
+		System.out.print(prompt + ": ");
+		String input = scanner.nextLine();
+		
+		return input.isBlank() ? null : input.trim();
+	}
+	
+	/************************************************************************/
+	private boolean exitMenu() {
+		  System.out.println("Exiting the menu1.");
+          return true;
+	}
+	
+	/************************************************************************/
 	private void createProject() {
 		String projectName = getStringInput("Enter your project name");
 		BigDecimal estimatedHours = getDecimalInput("Enter the estimated hours");
@@ -98,57 +167,5 @@ public class ProjectsApp {
 		}
 		
 	}
-
-	/************************************************************************/
-	private boolean exitMenu() {
-		  System.out.println("Exiting the application.");
-          return true;
-	}
-
-	/************************************************************************/
-
-	private int getUserSelection() {
-		
-		printOperations();
-		
-		Integer input = getIntInput("Enter a menu selection");
-		return Objects.isNull(input) ? -1 : input;
-	}
-	
-	/************************************************************************/
-	
-	private void printOperations() {
-		System.out.println("\nThese are the avaiable selections. Press the Enter key to quit:");
-		operations.forEach(line -> System.out.println("   " + line));
-		
-	}
-	
-	/************************************************************************/
-	
-	private Integer getIntInput(String prompt) {
-		String input = getStringInput(prompt);
-
-		if(Objects.isNull(input)) {
-			return null;
-		}
-		try {
-			return Integer.valueOf(input);
-		
-		}catch(NumberFormatException e) {
-			throw new DbException(input + " is not a valid number.");
 			
-		}
-		
-	}
-	/************************************************************************/
-	
-	private String getStringInput(String prompt) {
-		System.out.print(prompt + ": ");
-		String input = scanner.nextLine();
-		
-		return input.isBlank() ? null : input.trim();
-	}
-
-	
-	
 }

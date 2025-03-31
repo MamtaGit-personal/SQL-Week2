@@ -27,6 +27,7 @@ public class ProjectDao extends DaoBase {
 		
 		try(Connection conn = DbConnection.getConnection()){
 			startTransaction(conn);
+			
 			try(PreparedStatement stmt = conn.prepareStatement(sql)) {
 				
 				setParameter(stmt, 1, project.getProjectName(), String.class);

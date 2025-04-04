@@ -9,6 +9,10 @@ import projects.dao.ProjectDao;
 import projects.entity.Project;
 
 public class ProjectService {
+	
+	private static final String SCHEMA_FILE = "project_schema.sql";
+	private static final String DATA_FILE = "project_data.sql";
+	
 	ProjectDao projectDao = new ProjectDao();
 
 	/********************************************************/

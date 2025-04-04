@@ -168,7 +168,7 @@ public class ProjectsApp {
 	
 	/************************************************************************/
 	private boolean exitMenu() {
-		  System.out.println("Exiting the menu1.");
+		  System.out.println("Exiting the menu.");
           return true;
 	}
 	

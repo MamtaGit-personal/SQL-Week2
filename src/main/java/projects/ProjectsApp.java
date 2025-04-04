@@ -74,6 +74,7 @@ public class ProjectsApp {
 		
 	}// processUserSelections() 
 	
+	/************************************************************************/
 	private void selectProject() {
 		listProjects();
 		Integer projectId = getIntInput("Enter a project ID to select a project");
@@ -103,8 +104,8 @@ public class ProjectsApp {
 		/**********************************************************************
 		 * printOperations() method, prints all the choices a user has, like
 		 * 1. add a project
-		 * 2. delete a project
-		 * 3. Update a project
+		 * 2. Show all the projects
+		 * 3. Select a project
 		 * and so on. The operations variable, which is a list has been defined 
 		 * at the top .
 		 ************************************************************************/

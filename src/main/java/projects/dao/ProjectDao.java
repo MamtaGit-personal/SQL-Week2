@@ -265,20 +265,30 @@ public class ProjectDao extends DaoBase {
 	}
 	
 	/************************************************************************/
-	// /*
-	
+		
 	public boolean modifyProjectDetails(Project project) {
-			
+		
+		// @formatter:off
+		String sql = "" 
+				+ "UPDATE " + PROJECT_TABLE + " SET "
+				+ "project_name = ?, "
+				+ "estimated_hours = ?, "
+				+ "actual_hours = ?, "
+				+ "difficulty = ?, "
+				+ "notes = ? "
+				+ "WHERE project_id = ?";
+		// @formatter:on
+		
 		try(Connection conn = DbConnection.getConnection()){
 			startTransaction(conn);
 			
-			try(CallableStatement stmt = conn.prepareCall("{call update_project(?, ?, ?, ?, ?, ?)}")){
-				stmt.setString(1, project.getProjectName());
-				stmt.setBigDecimal(2, project.getEstimatedHours());
-				stmt.setBigDecimal(3, project.getActualHours());
-				stmt.setInt(4, project.getDifficulty());
-				stmt.setString(5, project.getNotes());
-				stmt.setInt(6, project.getProjectId());
+			try(PreparedStatement stmt = conn.prepareStatement(sql)){
+				setParameter(stmt, 1, project.getProjectName(), String.class);
+				setParameter(stmt, 2, project.getEstimatedHours(), BigDecimal.class);
+				setParameter(stmt, 3, project.getActualHours(), BigDecimal.class);
+				setParameter(stmt, 4, project.getDifficulty(), Integer.class);
+				setParameter(stmt, 5, project.getNotes(), String.class);
+				setParameter(stmt, 6, project.getProjectId(), Integer.class);
 				
 				boolean updatedProject = stmt.executeUpdate() == 1;
 		        commitTransaction(conn);

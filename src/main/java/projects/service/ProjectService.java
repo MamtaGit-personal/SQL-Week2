@@ -36,7 +36,9 @@ public class ProjectService {
 			return projectDao.insertProject(project);
 		}
 		else {
-			// If the project table DOESN'T exist then create all the tables and then add the project specified by the user.
+			/* If the project table DOESN'T exist then create all the tables 
+			 * and then add the project specified by the user. */
+			
 			createTables();
 			return projectDao.insertProject(project);
 		}
@@ -109,7 +111,7 @@ public class ProjectService {
 		
 	}
 	
-	/****************   Added the lines below to load files   ******************/
+	/****************   Added the lines below to load Schema and Data files   ******************/
 	
 	/************************************************************************/
 	public void createTables() {
